@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suning.epp.sws.dmo.BookMapper" >
+  <resultMap id="BaseResultMap" type="com.suning.epp.sws.dmo.Book" >
+    <id column="book_title" property="bookTitle" jdbcType="VARCHAR" />
+    <id column="isbn" property="isbn" jdbcType="VARCHAR" />
+    <result column="date_of_printing" property="dateOfPrinting" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="press" property="press" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="CHAR" />
+    <result column="unit_price" property="unitPrice" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    book_title, isbn, date_of_printing, author, press, category, unit_price
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.suning.epp.sws.dmo.BookKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from book
+    where book_title = #{bookTitle,jdbcType=VARCHAR}
+      and isbn = #{isbn,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.suning.epp.sws.dmo.BookKey" >
+    delete from book
+    where book_title = #{bookTitle,jdbcType=VARCHAR}
+      and isbn = #{isbn,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.suning.epp.sws.dmo.Book" >
+    insert into book (book_title, isbn, date_of_printing, 
+      author, press, category, 
+      unit_price)
+    values (#{bookTitle,jdbcType=VARCHAR}, #{isbn,jdbcType=VARCHAR}, #{dateOfPrinting,jdbcType=VARCHAR}, 
+      #{author,jdbcType=VARCHAR}, #{press,jdbcType=VARCHAR}, #{category,jdbcType=CHAR}, 
+      #{unitPrice,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.suning.epp.sws.dmo.Book" >
+    insert into book
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bookTitle != null" >
+        book_title,
+      </if>
+      <if test="isbn != null" >
+        isbn,
+      </if>
+      <if test="dateOfPrinting != null" >
+        date_of_printing,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="press != null" >
+        press,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="unitPrice != null" >
+        unit_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bookTitle != null" >
+        #{bookTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="isbn != null" >
+        #{isbn,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfPrinting != null" >
+        #{dateOfPrinting,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="press != null" >
+        #{press,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=CHAR},
+      </if>
+      <if test="unitPrice != null" >
+        #{unitPrice,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.suning.epp.sws.dmo.Book" >
+    update book
+    <set >
+      <if test="dateOfPrinting != null" >
+        date_of_printing = #{dateOfPrinting,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="press != null" >
+        press = #{press,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=CHAR},
+      </if>
+      <if test="unitPrice != null" >
+        unit_price = #{unitPrice,jdbcType=REAL},
+      </if>
+    </set>
+    where book_title = #{bookTitle,jdbcType=VARCHAR}
+      and isbn = #{isbn,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.suning.epp.sws.dmo.Book" >
+    update book
+    set date_of_printing = #{dateOfPrinting,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      press = #{press,jdbcType=VARCHAR},
+      category = #{category,jdbcType=CHAR},
+      unit_price = #{unitPrice,jdbcType=REAL}
+    where book_title = #{bookTitle,jdbcType=VARCHAR}
+      and isbn = #{isbn,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suning.epp.sws.dmo.OrderBookMapper" >
+  <resultMap id="BaseResultMap" type="com.suning.epp.sws.dmo.OrderBook" >
+    <id column="staff_id" property="staffId" jdbcType="VARCHAR" />
+    <id column="sec_id" property="secId" jdbcType="INTEGER" />
+    <id column="book_title" property="bookTitle" jdbcType="VARCHAR" />
+    <id column="isbn" property="isbn" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="approval" property="approval" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    staff_id, sec_id, book_title, isbn, remark, approval
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.suning.epp.sws.dmo.OrderBookKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_book
+    where staff_id = #{staffId,jdbcType=VARCHAR}
+      and sec_id = #{secId,jdbcType=INTEGER}
+      and book_title = #{bookTitle,jdbcType=VARCHAR}
+      and isbn = #{isbn,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.suning.epp.sws.dmo.OrderBookKey" >
+    delete from order_book
+    where staff_id = #{staffId,jdbcType=VARCHAR}
+      and sec_id = #{secId,jdbcType=INTEGER}
+      and book_title = #{bookTitle,jdbcType=VARCHAR}
+      and isbn = #{isbn,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.suning.epp.sws.dmo.OrderBook" >
+    insert into order_book (staff_id, sec_id, book_title, 
+      isbn, remark, approval)
+    values (#{staffId,jdbcType=VARCHAR}, #{secId,jdbcType=INTEGER}, #{bookTitle,jdbcType=VARCHAR}, 
+      #{isbn,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{approval,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.suning.epp.sws.dmo.OrderBook" >
+    insert into order_book
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="staffId != null" >
+        staff_id,
+      </if>
+      <if test="secId != null" >
+        sec_id,
+      </if>
+      <if test="bookTitle != null" >
+        book_title,
+      </if>
+      <if test="isbn != null" >
+        isbn,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="approval != null" >
+        approval,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="staffId != null" >
+        #{staffId,jdbcType=VARCHAR},
+      </if>
+      <if test="secId != null" >
+        #{secId,jdbcType=INTEGER},
+      </if>
+      <if test="bookTitle != null" >
+        #{bookTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="isbn != null" >
+        #{isbn,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="approval != null" >
+        #{approval,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.suning.epp.sws.dmo.OrderBook" >
+    update order_book
+    <set >
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="approval != null" >
+        approval = #{approval,jdbcType=BIT},
+      </if>
+    </set>
+    where staff_id = #{staffId,jdbcType=VARCHAR}
+      and sec_id = #{secId,jdbcType=INTEGER}
+      and book_title = #{bookTitle,jdbcType=VARCHAR}
+      and isbn = #{isbn,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.suning.epp.sws.dmo.OrderBook" >
+    update order_book
+    set remark = #{remark,jdbcType=VARCHAR},
+      approval = #{approval,jdbcType=BIT}
+    where staff_id = #{staffId,jdbcType=VARCHAR}
+      and sec_id = #{secId,jdbcType=INTEGER}
+      and book_title = #{bookTitle,jdbcType=VARCHAR}
+      and isbn = #{isbn,jdbcType=VARCHAR}
+  </update>
+</mapper>

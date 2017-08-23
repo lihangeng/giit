@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suning.epp.sws.dmo.SpecialityMapper" >
+  <resultMap id="BaseResultMap" type="com.suning.epp.sws.dmo.Speciality" >
+    <id column="spec_id" property="specId" jdbcType="INTEGER" />
+    <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
+    <result column="spec_name" property="specName" jdbcType="VARCHAR" />
+    <result column="year" property="year" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    spec_id, dept_name, spec_name, year
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from speciality
+    where spec_id = #{specId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from speciality
+    where spec_id = #{specId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.suning.epp.sws.dmo.Speciality" >
+    insert into speciality (spec_id, dept_name, spec_name, 
+      year)
+    values (#{specId,jdbcType=INTEGER}, #{deptName,jdbcType=VARCHAR}, #{specName,jdbcType=VARCHAR}, 
+      #{year,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.suning.epp.sws.dmo.Speciality" >
+    insert into speciality
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="specId != null" >
+        spec_id,
+      </if>
+      <if test="deptName != null" >
+        dept_name,
+      </if>
+      <if test="specName != null" >
+        spec_name,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="specId != null" >
+        #{specId,jdbcType=INTEGER},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="specName != null" >
+        #{specName,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.suning.epp.sws.dmo.Speciality" >
+    update speciality
+    <set >
+      <if test="deptName != null" >
+        dept_name = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="specName != null" >
+        spec_name = #{specName,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where spec_id = #{specId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.suning.epp.sws.dmo.Speciality" >
+    update speciality
+    set dept_name = #{deptName,jdbcType=VARCHAR},
+      spec_name = #{specName,jdbcType=VARCHAR},
+      year = #{year,jdbcType=VARCHAR}
+    where spec_id = #{specId,jdbcType=INTEGER}
+  </update>
+</mapper>

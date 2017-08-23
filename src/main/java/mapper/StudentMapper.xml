@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suning.epp.sws.dmo.StudentMapper" >
+  <resultMap id="BaseResultMap" type="com.suning.epp.sws.dmo.Student" >
+    <id column="student_id" property="studentId" jdbcType="VARCHAR" />
+    <result column="student_name" property="studentName" jdbcType="VARCHAR" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="year" property="year" jdbcType="VARCHAR" />
+    <result column="class_id" property="classId" jdbcType="VARCHAR" />
+    <result column="telephone_number" property="telephoneNumber" jdbcType="VARCHAR" />
+    <result column="student_origin_base" property="studentOriginBase" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="pic_path" property="picPath" jdbcType="VARCHAR" />
+    <result column="leave_of_absence" property="leaveOfAbsence" jdbcType="BIT" />
+    <result column="leave_school" property="leaveSchool" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    student_id, student_name, id_card, year, class_id, telephone_number, student_origin_base, 
+    gender, pic_path, leave_of_absence, leave_school
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where student_id = #{studentId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from student
+    where student_id = #{studentId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.suning.epp.sws.dmo.Student" >
+    insert into student (student_id, student_name, id_card, 
+      year, class_id, telephone_number, 
+      student_origin_base, gender, pic_path, 
+      leave_of_absence, leave_school)
+    values (#{studentId,jdbcType=VARCHAR}, #{studentName,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, 
+      #{year,jdbcType=VARCHAR}, #{classId,jdbcType=VARCHAR}, #{telephoneNumber,jdbcType=VARCHAR}, 
+      #{studentOriginBase,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{picPath,jdbcType=VARCHAR}, 
+      #{leaveOfAbsence,jdbcType=BIT}, #{leaveSchool,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.suning.epp.sws.dmo.Student" >
+    insert into student
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="studentId != null" >
+        student_id,
+      </if>
+      <if test="studentName != null" >
+        student_name,
+      </if>
+      <if test="idCard != null" >
+        id_card,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="classId != null" >
+        class_id,
+      </if>
+      <if test="telephoneNumber != null" >
+        telephone_number,
+      </if>
+      <if test="studentOriginBase != null" >
+        student_origin_base,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="picPath != null" >
+        pic_path,
+      </if>
+      <if test="leaveOfAbsence != null" >
+        leave_of_absence,
+      </if>
+      <if test="leaveSchool != null" >
+        leave_school,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="studentId != null" >
+        #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentName != null" >
+        #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="classId != null" >
+        #{classId,jdbcType=VARCHAR},
+      </if>
+      <if test="telephoneNumber != null" >
+        #{telephoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="studentOriginBase != null" >
+        #{studentOriginBase,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="picPath != null" >
+        #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveOfAbsence != null" >
+        #{leaveOfAbsence,jdbcType=BIT},
+      </if>
+      <if test="leaveSchool != null" >
+        #{leaveSchool,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.suning.epp.sws.dmo.Student" >
+    update student
+    <set >
+      <if test="studentName != null" >
+        student_name = #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="classId != null" >
+        class_id = #{classId,jdbcType=VARCHAR},
+      </if>
+      <if test="telephoneNumber != null" >
+        telephone_number = #{telephoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="studentOriginBase != null" >
+        student_origin_base = #{studentOriginBase,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="picPath != null" >
+        pic_path = #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveOfAbsence != null" >
+        leave_of_absence = #{leaveOfAbsence,jdbcType=BIT},
+      </if>
+      <if test="leaveSchool != null" >
+        leave_school = #{leaveSchool,jdbcType=BIT},
+      </if>
+    </set>
+    where student_id = #{studentId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.suning.epp.sws.dmo.Student" >
+    update student
+    set student_name = #{studentName,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      year = #{year,jdbcType=VARCHAR},
+      class_id = #{classId,jdbcType=VARCHAR},
+      telephone_number = #{telephoneNumber,jdbcType=VARCHAR},
+      student_origin_base = #{studentOriginBase,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      pic_path = #{picPath,jdbcType=VARCHAR},
+      leave_of_absence = #{leaveOfAbsence,jdbcType=BIT},
+      leave_school = #{leaveSchool,jdbcType=BIT}
+    where student_id = #{studentId,jdbcType=VARCHAR}
+  </update>
+</mapper>

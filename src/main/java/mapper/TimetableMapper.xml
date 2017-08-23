@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suning.epp.sws.dmo.TimetableMapper" >
+  <resultMap id="BaseResultMap" type="com.suning.epp.sws.dmo.Timetable" >
+    <result column="sec_id" property="secId" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="weeks" property="weeks" jdbcType="VARCHAR" />
+    <result column="week" property="week" jdbcType="VARCHAR" />
+    <result column="classroom" property="classroom" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.suning.epp.sws.dmo.Timetable" >
+    insert into timetable (sec_id, time, weeks, 
+      week, classroom)
+    values (#{secId,jdbcType=INTEGER}, #{time,jdbcType=VARCHAR}, #{weeks,jdbcType=VARCHAR}, 
+      #{week,jdbcType=VARCHAR}, #{classroom,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.suning.epp.sws.dmo.Timetable" >
+    insert into timetable
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="secId != null" >
+        sec_id,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="weeks != null" >
+        weeks,
+      </if>
+      <if test="week != null" >
+        week,
+      </if>
+      <if test="classroom != null" >
+        classroom,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="secId != null" >
+        #{secId,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="weeks != null" >
+        #{weeks,jdbcType=VARCHAR},
+      </if>
+      <if test="week != null" >
+        #{week,jdbcType=VARCHAR},
+      </if>
+      <if test="classroom != null" >
+        #{classroom,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

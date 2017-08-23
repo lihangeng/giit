@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suning.epp.sws.dmo.TakesMapper" >
+  <resultMap id="BaseResultMap" type="com.suning.epp.sws.dmo.Takes" >
+    <id column="student_id" property="studentId" jdbcType="VARCHAR" />
+    <id column="sec_id" property="secId" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    student_id, sec_id, score
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.suning.epp.sws.dmo.TakesKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from takes
+    where student_id = #{studentId,jdbcType=VARCHAR}
+      and sec_id = #{secId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.suning.epp.sws.dmo.TakesKey" >
+    delete from takes
+    where student_id = #{studentId,jdbcType=VARCHAR}
+      and sec_id = #{secId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.suning.epp.sws.dmo.Takes" >
+    insert into takes (student_id, sec_id, score
+      )
+    values (#{studentId,jdbcType=VARCHAR}, #{secId,jdbcType=VARCHAR}, #{score,jdbcType=REAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.suning.epp.sws.dmo.Takes" >
+    insert into takes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="studentId != null" >
+        student_id,
+      </if>
+      <if test="secId != null" >
+        sec_id,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="studentId != null" >
+        #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="secId != null" >
+        #{secId,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.suning.epp.sws.dmo.Takes" >
+    update takes
+    <set >
+      <if test="score != null" >
+        score = #{score,jdbcType=REAL},
+      </if>
+    </set>
+    where student_id = #{studentId,jdbcType=VARCHAR}
+      and sec_id = #{secId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.suning.epp.sws.dmo.Takes" >
+    update takes
+    set score = #{score,jdbcType=REAL}
+    where student_id = #{studentId,jdbcType=VARCHAR}
+      and sec_id = #{secId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suning.epp.sws.dmo.SectionMapper" >
+  <resultMap id="BaseResultMap" type="com.suning.epp.sws.dmo.Section" >
+    <id column="sec_id" property="secId" jdbcType="INTEGER" />
+    <result column="course_title" property="courseTitle" jdbcType="VARCHAR" />
+    <result column="year" property="year" jdbcType="VARCHAR" />
+    <result column="limitCount" property="limitcount" jdbcType="INTEGER" />
+    <result column="staff_id" property="staffId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sec_id, course_title, year, limitCount, staff_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from section
+    where sec_id = #{secId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from section
+    where sec_id = #{secId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.suning.epp.sws.dmo.Section" >
+    insert into section (sec_id, course_title, year, 
+      limitCount, staff_id)
+    values (#{secId,jdbcType=INTEGER}, #{courseTitle,jdbcType=VARCHAR}, #{year,jdbcType=VARCHAR}, 
+      #{limitcount,jdbcType=INTEGER}, #{staffId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.suning.epp.sws.dmo.Section" >
+    insert into section
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="secId != null" >
+        sec_id,
+      </if>
+      <if test="courseTitle != null" >
+        course_title,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="limitcount != null" >
+        limitCount,
+      </if>
+      <if test="staffId != null" >
+        staff_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="secId != null" >
+        #{secId,jdbcType=INTEGER},
+      </if>
+      <if test="courseTitle != null" >
+        #{courseTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="limitcount != null" >
+        #{limitcount,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.suning.epp.sws.dmo.Section" >
+    update section
+    <set >
+      <if test="courseTitle != null" >
+        course_title = #{courseTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="limitcount != null" >
+        limitCount = #{limitcount,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        staff_id = #{staffId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sec_id = #{secId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.suning.epp.sws.dmo.Section" >
+    update section
+    set course_title = #{courseTitle,jdbcType=VARCHAR},
+      year = #{year,jdbcType=VARCHAR},
+      limitCount = #{limitcount,jdbcType=INTEGER},
+      staff_id = #{staffId,jdbcType=VARCHAR}
+    where sec_id = #{secId,jdbcType=INTEGER}
+  </update>
+</mapper>
