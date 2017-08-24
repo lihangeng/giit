@@ -59,7 +59,7 @@ public class FormLoginFilter extends PathMatchingFilter{
 		try {
 			SecurityUtils.getSubject().login(new UsernamePasswordToken(username, password));
 		}catch(Exception e) {
-			rep.setAttribute("shiroLoginFailure", e.getClass());
+			rep.setAttribute("shiroLoginFailure", e.getClass().getName());
 			return false;
 		}
 		

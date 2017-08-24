@@ -48,7 +48,7 @@
         <url-pattern>*.ttf</url-pattern>
     </servlet-mapping>
     
-    <!-- shiro 安全过滤器,要放在其他功能性过滤器的前边 
+    <!-- shiro 安全过滤器,要放在其他功能性过滤器的前边 -->
     <filter>
         <filter-name>shiroFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -62,7 +62,7 @@
         <filter-name>shiroFilter</filter-name>
         <url-pattern>/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
-    </filter-mapping>-->
+    </filter-mapping>
     
     <!--字符过滤器,解决字符编码的问题-->
     <filter>
@@ -94,7 +94,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
-        <url-pattern>giit/</url-pattern><!-- 不能用/giit/ -->
+        <url-pattern>/</url-pattern><!-- 不能用/giit/ -->
     </servlet-mapping>
     
   <display-name>Archetype Created Web Application</display-name>
