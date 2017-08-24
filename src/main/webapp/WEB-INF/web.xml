@@ -48,7 +48,7 @@
         <url-pattern>*.ttf</url-pattern>
     </servlet-mapping>
     
-    <!-- shiro 安全过滤器,要放在其他功能性过滤器的前边 -->
+    <!-- shiro 安全过滤器,要放在其他功能性过滤器的前边 
     <filter>
         <filter-name>shiroFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -62,7 +62,7 @@
         <filter-name>shiroFilter</filter-name>
         <url-pattern>/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
-    </filter-mapping>
+    </filter-mapping>-->
     
     <!--字符过滤器,解决字符编码的问题-->
     <filter>
@@ -79,7 +79,10 @@
     </filter-mapping>
     
     <!--springmvc的前端控制器-->
-    <!--设置成/不是/*表示不拦截.jsp-->
+    <!--设置成/不是/*表示不拦截.jsp
+    <url-pattern>/</url-pattern>  会匹配到/login这样的路径型url，不会匹配到模式为*.jsp这样的后缀型url
+    <url-pattern>/*</url-pattern> 会匹配所有url：路径型的和后缀型的url(包括/login,*.jsp,*.js和*.html等)
+    -->
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -91,7 +94,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>giit/</url-pattern><!-- 不能用/giit/ -->
     </servlet-mapping>
     
   <display-name>Archetype Created Web Application</display-name>

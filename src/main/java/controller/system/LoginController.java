@@ -14,7 +14,7 @@ public class LoginController {
 	public String login(HttpServletRequest req, Model model, HttpSession session) {
 		
 		
-		return null;
+		return "redirect:login.jsp";
 		
 	}
 
