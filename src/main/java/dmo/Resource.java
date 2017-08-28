@@ -2,19 +2,33 @@ package dmo;
 
 public class Resource {
     private Long id;
-
+    /*
+     *资源名称
+     */
     private String name;
-
+    /*
+     * 资源类型
+     */
     private String type;
-
+    /*
+     * 资源路径
+     */
     private String url;
-
+    /*
+     * 父编号
+     */
     private Long parentId;
-
+    /*
+     * 父编号列表
+     */
     private String parentIds;
-
+    /*
+     * 权限字符串
+     */
     private String permission;
-
+    /*
+     * 
+     */
     private Boolean available;
 
     public Long getId() {
