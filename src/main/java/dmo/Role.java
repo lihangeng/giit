@@ -1,14 +1,28 @@
 package dmo;
 
+import java.util.List;
+
 public class Role {
     private Long id;
-
+    /**
+     * 角色标识
+     */
     private String role;
-
+    /**
+     * 角色描述
+     */
     private String description;
-
-    private String resourceIds;
-
+    /**
+     * 拥有的资源
+     */
+    private List<Long> resourceIds;
+    /**
+     * 
+     */
+    private String resourceIdStrs;
+    /**
+     * 是否可用
+     */
     private Boolean available;
 
     public Long getId() {
@@ -35,12 +49,12 @@ public class Role {
         this.description = description == null ? null : description.trim();
     }
 
-    public String getResourceIds() {
+    public List<Long> getResourceIds() {
         return resourceIds;
     }
 
-    public void setResourceIds(String resourceIds) {
-        this.resourceIds = resourceIds == null ? null : resourceIds.trim();
+    public void setResourceIds(List<Long> resourceIds) {
+        this.resourceIds = resourceIds;
     }
 
     public Boolean getAvailable() {

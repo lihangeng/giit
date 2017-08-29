@@ -17,6 +17,26 @@
   </resultMap>
   <insert id="createResource">
      insert into resource(name,type,url,parent_id,parent_ids,permission,available)
-     
+     values(#{name},#{type},#{url},#{parentId},#{parentIds},#{permission},#{available})
   </insert>
+  <update id="updateResource">
+     update resource set 
+     name=#{name},
+     type=#{type},
+     url=#{url},
+     parent_id=#{parentId},
+     parent_ids=#{parentIds},
+     permission=#{permission},
+     available=#{available}
+     where id=#{id}
+  </update>
+  <delete id="deleteResource">
+  	delete from resource where id=#{id}
+  </delete>
+  <select id="findOne">
+    select id,name,type,url,parent_id,parent_ids,permission,available from resource where id=#{id}
+  </select>
+  <select id="findAll">
+    select id,name,type,url,parent_id,parent_ids,permission,available from resource where 1=1
+  </select>
  </mapper>

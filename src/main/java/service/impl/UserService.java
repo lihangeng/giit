@@ -1,18 +1,30 @@
 package service.impl;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import dao.IRoleDao;
 import dao.IStaffDao;
-import dao.IUserDao;
+import dao.system.IRoleDao;
+import dao.system.IUserDao;
+import dmo.Role;
 import dmo.User;
+import dmo.UserVo;
 import service.IUserService;
-
+import untils.PasswordHelper;
+/**
+ * userService
+ * @author 17051548
+ *
+ */
 @Service
 public class UserService implements IUserService {
 	
@@ -24,53 +36,87 @@ public class UserService implements IUserService {
 	
 	@Resource
 	private IStaffDao staffDao;
+	
+	@Resource
+	private PasswordHelper passwordHelper;
+	
+	@Resource(name="roleService")
+	private RoleService roleService;
 
 	@Override
-	public List<User> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<UserVo> findAll() {
+
+		List<UserVo> userVoList = new ArrayList<UserVo>();
+		List<User> userList = userDao.findAll();
+		Iterator<User> itertor = userList.iterator();
+		while(itertor.hasNext()) {
+			StringBuilder s = new StringBuilder();
+			User user = (User)itertor.next();
+			List<Long> roleIds = user.getRoleIds();
+			UserVo userVo = new UserVo();
+			BeanUtils.copyProperties(user, userVo);
+			if(roleIds != null) {
+				for(int i=0;i<roleIds.size();i++) {
+					Role role = roleDao.selectOne(roleIds.get(i));
+					s.append(role.getDescription());
+					s.append(",");
+					userVo.setRoleIdsStr(s.toString());
+				}
+			}
+			userVoList.add(userVo);
+		}
+		
+		return userVoList;
 	}
 
 	@Override
 	public User findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		 return userDao.findById(id);
 	}
 
 	@Override
 	public void update(User user) {
-		// TODO Auto-generated method stub
+		userDao.update(user);
 		
 	}
 
 	@Override
 	public void add(User user) {
-		// TODO Auto-generated method stub
+		userDao.add(user);
 		
 	}
 
+	@Transactional
 	@Override
 	public void delete(String id) {
-		// TODO Auto-generated method stub
+		userDao.delete(id);
 		
 	}
 
 	@Override
 	public void changePassword(String userId, String newPassword) {
-		// TODO Auto-generated method stub
-		
+		User user = userDao.findById(userId);
+		user.setPassword(newPassword);
+		passwordHelper.encryptPassword(user);
+		userDao.update(user);
 	}
 
 	@Override
-	public List<String> findRoles(String username) {
-		// TODO Auto-generated method stub
-		return null;
+	public Set<String> findRoles(String username) {
+		User user = userDao.findByUsername(username);
+		if(user == null) {
+			return Collections.EMPTY_SET;
+		}
+		return roleService.findRoles(user.getRoleIds().toArray(new Long[0]));
 	}
 
 	@Override
-	public List<String> findPermissions(String username) {
-		// TODO Auto-generated method stub
-		return null;
+	public Set<String> findPermissions(String username) {
+		User user = userDao.findByUsername(username);
+		if(user == null) {
+			return Collections.EMPTY_SET;
+		}
+		return roleService.findPermissions(user.getRoleIds().toArray(new Long[0]));
 	}
 
 }

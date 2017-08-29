@@ -1,5 +1,7 @@
 package dmo;
 
+import enums.ResourceType;
+
 public class Resource {
     private Long id;
     /*
@@ -9,7 +11,7 @@ public class Resource {
     /*
      * 资源类型
      */
-    private String type;
+    private ResourceType type;
     /*
      * 资源路径
      */
@@ -47,12 +49,12 @@ public class Resource {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getType() {
+    public ResourceType getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
+    public void setType(ResourceType type) {
+        this.type = type;
     }
 
     public String getUrl() {
@@ -93,5 +95,9 @@ public class Resource {
 
     public void setAvailable(Boolean available) {
         this.available = available;
+    }
+    
+    public Boolean isRootNote() {
+    	return parentId == 0;
     }
 }

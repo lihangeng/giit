@@ -1,9 +1,13 @@
-package dao; 
+package dao.system; 
 
 import java.util.List;
 
 import dmo.Role;
-
+/**
+ * 
+ * @author 17051548
+ *
+ */
 public interface IRoleDao {
 	
 	public List<Role> findAll();
