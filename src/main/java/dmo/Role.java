@@ -1,6 +1,6 @@
 package dmo;
 
-import java.util.List;
+import java.util.Set;
 
 public class Role {
     private Long id;
@@ -15,7 +15,7 @@ public class Role {
     /**
      * 拥有的资源
      */
-    private List<Long> resourceIds;
+    private Set<Long> resourceIds;
     /**
      * 
      */
@@ -49,12 +49,12 @@ public class Role {
         this.description = description == null ? null : description.trim();
     }
 
-    public List<Long> getResourceIds() {
+    public Set<Long> getResourceIds() {
         return resourceIds;
     }
 
-    public void setResourceIds(List<Long> resourceIds) {
-        this.resourceIds = resourceIds;
+    public void setResourceIds(Set<Long> resourceIds) {
+        this.resourceIds =  resourceIds;
     }
 
     public Boolean getAvailable() {

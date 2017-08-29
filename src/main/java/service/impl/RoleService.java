@@ -1,53 +1,75 @@
 package service.impl;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import dao.system.IRoleDao;
 import dmo.Role;
 import service.IRoleService;
 
+@Service
 public class RoleService implements IRoleService {
+	
+	@Resource
+	private IRoleDao roleDao;
+	
+	@Resource
+	private ResourceService resourceService;
 
 	@Override
 	public void createRole(Role role) {
-		// TODO Auto-generated method stub
+		roleDao.createRole(role);
 
 	}
 
 	@Override
 	public void updateRole(Role role) {
-		// TODO Auto-generated method stub
+		roleDao.updateRole(role);
 
 	}
 
 	@Override
 	public void deleteRole(Long roleId) {
-		// TODO Auto-generated method stub
-
+		roleDao.deleteRole(roleId);
 	}
 
 	@Override
 	public Role findOne(Long roleId) {
-		// TODO Auto-generated method stub
-		return null;
+		return roleDao.selectOne(roleId);
 	}
 
 	@Override
 	public List<Role> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return roleDao.findAll();
 	}
 
 	@Override
 	public Set<String> findRoles(Long... roleIds) {
-		// TODO Auto-generated method stub
-		return null;
+		Set<String> roles = new HashSet<String>();
+		for(Long roleId:roleIds) {
+			Role role = roleDao.selectOne(roleId);
+			if(role != null) {
+				roles.add(role.getRole());
+			}
+		}
+		return roles;
 	}
 
 	@Override
 	public Set<String> findPermissions(Long[] roleIds) {
-		// TODO Auto-generated method stub
-		return null;
+		Set<Long> resourceIds =  new HashSet<Long>();
+		for(Long roleId:roleIds) {
+			Role role = roleDao.selectOne(roleId);
+			if( role!=null) {
+				resourceIds.addAll(role.getResourceIds());
+			}
+		}
+		return resourceService.findPermissions(resourceIds);
 	}
 
 }

@@ -8,12 +8,10 @@
        
     <!--自动扫描bean-->
 	    
-       <context:component-scan base-package="service">
-	        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
-	   </context:component-scan>
-	   <context:component-scan base-package="dao">
-	        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
-	   </context:component-scan>
+       <!--自动扫描bean-->
+    <context:component-scan base-package="controller">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
     
     <!--引入外部配置文件-->
     <context:property-placeholder location="classpath:db.properties"/>

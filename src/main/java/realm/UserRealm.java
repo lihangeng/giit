@@ -16,11 +16,12 @@ import org.apache.shiro.util.ByteSource;
 
 import dmo.User;
 import service.IUserService;
+import service.impl.UserService;
 
 public class UserRealm extends AuthorizingRealm{
 	
-	@Resource(name = "UserService")
-	private IUserService userService;
+	@Resource(name="userService")
+	private UserService userService;
 
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {

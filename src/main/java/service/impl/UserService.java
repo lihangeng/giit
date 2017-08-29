@@ -25,7 +25,7 @@ import untils.PasswordHelper;
  * @author 17051548
  *
  */
-@Service
+@Service("userService")
 public class UserService implements IUserService {
 	
 	@Resource

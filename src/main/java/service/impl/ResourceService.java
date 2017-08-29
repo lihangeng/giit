@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.shiro.authz.permission.WildcardPermission;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import dao.system.IResourceDao;
@@ -17,6 +18,7 @@ import service.IResourceService;
  * @author 17051548
  *
  */
+@Service
 public class ResourceService implements IResourceService {
 	
 	@javax.annotation.Resource
