@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.giit.web.dao.system.IResourceDao">
+ <resultMap id="BaseResultMap" type="Resource" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="parent_ids" property="parentIds" jdbcType="VARCHAR" />
+    <result column="permission" property="permission" jdbcType="VARCHAR" />
+    <result column="available" property="available" jdbcType="BIT" />
+  </resultMap>
+  <insert id="createResource">
+     insert into resource(name,type,url,parent_id,parent_ids,permission,available)
+     values(#{name},#{type},#{url},#{parentId},#{parentIds},#{permission},#{available})
+  </insert>
+  <update id="updateResource">
+     update resource set 
+     name=#{name},
+     type=#{type},
+     url=#{url},
+     parent_id=#{parentId},
+     parent_ids=#{parentIds},
+     permission=#{permission},
+     available=#{available}
+     where id=#{id}
+  </update>
+  <delete id="deleteResource">
+  	delete from resource where id=#{id}
+  </delete>
+  <select id="findOne">
+    select id,name,type,url,parent_id,parent_ids,permission,available from resource where id=#{id}
+  </select>
+  <select id="findAll">
+    select id,name,type,url,parent_id,parent_ids,permission,available from resource where 1=1
+  </select>
+ </mapper>

@@ -8,13 +8,8 @@
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
       
-       <context:component-scan base-package="service">
+       <context:component-scan base-package="com.giit.web">
 	        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
-	   </context:component-scan>
-	   <context:component-scan base-package="realm">
-	        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
-	   </context:component-scan>
-	   <context:component-scan base-package="dao">
 	        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
 	   </context:component-scan>
        
@@ -25,10 +20,6 @@
 		    <!--用于解析@RequestBody-->
 		    <bean id="conversionService"
           class="org.springframework.format.support.FormattingConversionServiceFactoryBean"></bean>
-		
-	    <!--用于解析@RequestBody-->
-	    <bean id="conversionService"
-	          class="org.springframework.format.support.FormattingConversionServiceFactoryBean"></bean>
 	
 	    <!--视图解析器-->
 	    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

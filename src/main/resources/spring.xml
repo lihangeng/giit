@@ -5,11 +5,10 @@
        xmlns:task="http://www.springframework.org/schema/task"
        xmlns:mybatis="http://mybatis.org/schema/mybatis-spring" xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
-       
-    <!--自动扫描bean-->
+      
 	    
        <!--自动扫描bean-->
-    <context:component-scan base-package="controller">
+    <context:component-scan base-package="com.giit.web">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
     
@@ -51,7 +50,7 @@
     </bean>
     
     <!-- 控制器异常处理 -->
-    <bean id="exceptionHandlerExceptionResolver" class="exception.DefaultExceptionHandler">
+    <bean id="exceptionHandlerExceptionResolver" class="com.giit.web.exception.DefaultExceptionHandler">
     </bean>
     
     <import resource="classpath:spring-shiro.xml"/>
