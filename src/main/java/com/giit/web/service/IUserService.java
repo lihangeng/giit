@@ -3,9 +3,8 @@ package com.giit.web.service;
 import java.util.List;
 import java.util.Set;
 
+import com.giit.web.dmo.User;
 import com.giit.web.dmo.UserVo;
-
-import dmo.User;
 
 public interface IUserService {
 	

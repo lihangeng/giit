@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import dmo.User;
+import com.giit.web.dmo.User;
 
 /**
  * 

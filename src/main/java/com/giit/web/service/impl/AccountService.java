@@ -5,9 +5,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.giit.web.dao.system.IUserDao;
+import com.giit.web.dmo.User;
 import com.giit.web.service.IAccountService;
-
-import dmo.User;
 /**
  * AccountService
  * @author 17051548

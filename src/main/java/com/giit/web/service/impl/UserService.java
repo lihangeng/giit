@@ -16,11 +16,10 @@ import com.giit.web.dao.IStaffDao;
 import com.giit.web.dao.system.IRoleDao;
 import com.giit.web.dao.system.IUserDao;
 import com.giit.web.dmo.Role;
+import com.giit.web.dmo.User;
 import com.giit.web.dmo.UserVo;
 import com.giit.web.service.IUserService;
 import com.giit.web.untils.PasswordHelper;
-
-import dmo.User;
 /**
  * userService
  * @author 17051548

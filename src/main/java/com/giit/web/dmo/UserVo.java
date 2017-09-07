@@ -1,7 +1,5 @@
 package com.giit.web.dmo;
 
-import dmo.User;
-
 public class UserVo extends User {
 	
 	String roleIdStr;

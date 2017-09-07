@@ -6,7 +6,7 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.stereotype.Service;
 
-import dmo.User;
+import com.giit.web.dmo.User;
 
 /**
  * 

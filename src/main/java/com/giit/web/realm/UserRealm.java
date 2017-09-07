@@ -14,9 +14,8 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 
+import com.giit.web.dmo.User;
 import com.giit.web.service.impl.UserService;
-
-import dmo.User;
 
 public class UserRealm extends AuthorizingRealm{
 	

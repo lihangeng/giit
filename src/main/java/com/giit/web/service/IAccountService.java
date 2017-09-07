@@ -1,6 +1,6 @@
 package com.giit.web.service;
 
-import dmo.User;
+import com.giit.web.dmo.User;
 
 public interface IAccountService {
 	

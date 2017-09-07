@@ -1,4 +1,4 @@
-package dmo;
+package com.giit.web.dmo;
 
 import java.util.ArrayList;
 import java.util.List;
