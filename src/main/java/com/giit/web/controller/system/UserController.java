@@ -6,8 +6,8 @@ import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.giit.web.service.impl.RoleService;
-import com.giit.web.service.impl.UserService;
+import com.giit.web.service.IRoleService;
+import com.giit.web.service.IUserService;
 
 @Controller
 @RequiresRoles("admin")
@@ -15,10 +15,10 @@ import com.giit.web.service.impl.UserService;
 public class UserController {
 	
 	@Resource(name="userService")
-	private UserService userService;
+	private IUserService userService;
 	
 	@Resource(name="roleService")
-	private RoleService roleService;
+	private IRoleService roleService;
 	
 	
 
