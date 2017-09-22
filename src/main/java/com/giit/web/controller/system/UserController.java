@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.giit.web.service.IRoleService;
 import com.giit.web.service.IUserService;
@@ -20,6 +21,9 @@ public class UserController {
 	@Resource(name="roleService")
 	private IRoleService roleService;
 	
-	
+	public ModelAndView userView() {
+		return null;
+		
+	}
 
 }
