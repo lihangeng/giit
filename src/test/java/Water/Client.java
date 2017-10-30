@@ -1,5 +1,7 @@
 package Water;
 
+import java.util.Locale;
+
 public class Client {
 
 	public static void main(String[] args) {
@@ -13,7 +15,6 @@ public class Client {
 		watched.addWatcher(watcher2);
 		
 		watched.updateStatus();
-
 	}
 
 }

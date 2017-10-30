@@ -2,6 +2,9 @@ package Proxy;
 
 import java.lang.reflect.Proxy;
 
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanFactory;
+
 public class Client {
 
 	@SuppressWarnings("unused")
@@ -20,6 +23,8 @@ public class Client {
 		clazz.getClassLoader();
 		
 		Object o = new Object();
+		
+		BeanFactory factroy = new XmlBeanFactory(null);
 	}
 
 }
