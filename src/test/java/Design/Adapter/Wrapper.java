@@ -7,6 +7,7 @@ public class Wrapper implements Targetable {
 	
 	public Wrapper(Source source) {
 		super();
+		this.source = source;
 	}
 	
 	@Override
@@ -18,7 +19,4 @@ public class Wrapper implements Targetable {
 	public void method2() {
 		source.method1();
 	}
-
-
-
 }

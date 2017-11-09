@@ -7,6 +7,10 @@ public class AdapterTest {
 		Targetable target = new Adapter();
 		target.method1();
 		target.method2();
+		
+		Source source = new Source();
+		Wrapper wrapper = new Wrapper(source);
+		wrapper.method1();
+		wrapper.method2();
 	}
-
 }
