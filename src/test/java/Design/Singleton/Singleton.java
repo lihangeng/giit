@@ -9,7 +9,7 @@ public class Singleton {
 	 * 私有构造方法，防止被实例化
 	 */
 	private Singleton() {
-		
+		System.out.println("调用了构造方法");
 	}
 	/**
 	 * 静态工厂方法，创建实例

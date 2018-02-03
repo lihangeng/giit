@@ -1,5 +1,6 @@
 package JDBCTest;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -34,14 +35,14 @@ public class JdbcConnection {
 			con.close();
 		
 		}catch(ClassNotFoundException e) {
-			System.out.println("数据库驱动类异常");
+			System.out.println("δ�����࣡");
 			e.printStackTrace();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
-			System.out.println("数据库数据成功获取！");
+			System.out.println("ִ����ϣ�");
 		}
 	}
 
